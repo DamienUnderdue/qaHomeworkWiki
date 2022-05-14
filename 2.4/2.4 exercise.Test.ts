@@ -44,29 +44,36 @@ describe("Employee Manager 1.2", () => {
         4. Open Bernice Ortiz
         5. Verify the name field is the original name
         */
-        await driver.findElement(By.name).click();
+        await driver.findElement(By.name("employee1")).click();
+        // Does the above code open Bernice Ortiz?//
         await driver.wait(until.elementIsVisible(await driver.findElement(By.name))
         );
+        
         await driver.findElement(By.name).clear();
-        await driver.findElement(By.name).sendKeys("employee1");
-        await driver.findElement(By.name).click();
+        // above line clears name field
+        await driver.findElement(By.name("nameEntry")).sendKeys("Bernice");
+        // above line inputs "Bernice"
+        await driver.findElement(By.name("employee3")).click();
+        //above line clicks employee3 which is Phillip
+
         await driver.wait(
             until.elementTextContains(
             await driver.findElement(By.name),
             "Phillip"
-            )
+            )//above  line instructs the driver to find Phillip by name
         );
-        await driver.findElement(By.name).click();
+        await driver.findElement(By.name("employee1")).click();
         await driver.wait(
             until.elementTextContains(
             await driver.findElement(By.name),
             "Bernice"
             )
+            // above line  instructs driver to find employee1 by name.(Bernice)
         );
         expect(
             await (await driver.findElement(By.name)).getAttribute("employee1")
         ).toBe("Bernice Ortiz");
-        });
+        });// Does the above line mean that the driver will grab all attributes regarding employee1?
 
         test("A canceled change doesn't persist", async () => {
             /*
@@ -76,15 +83,15 @@ describe("Employee Manager 1.2", () => {
             3. Click cancel
             5. Verify the name field is the original name
             */
-            await driver.findElement(By.name).click();
+            await driver.findElement(By.name("employee3")).click();
             await driver.wait(
                 until.elementIsVisible(await driver.findElement(By.name))
             );
-            await driver.findElement(By.name).clear();
+            await driver.findElement(By.name("nameEntry")).clear();
             await driver.findElement(By.name).sendKeys("employee2");
-            await driver.findElement(By.name).click();
+            await driver.findElement(By.name("cancel")).click();
             expect(
-                await (await driver.findElement(By.name)).getAttribute("employee2")
+                await (await driver.findElement(By.name)).getAttribute("employee3")
             ).toBe("Phillip Weaver");
         });
 
@@ -98,19 +105,16 @@ describe("Employee Manager 1.2", () => {
             5. Open Bernice Ortiz's old record
             5. Verify the name field is the edited name
             */
-            await driver.findElement(By.name).click();
-            await driver.wait(until.elementIsVisible(await driver.findElement(By.name(("employee1")))
-            )
+            await driver.findElement(By.name("employee1")).click();
+            await driver.wait(until.elementIsVisible(await driver.findElement(By.name)));
             await driver.findElement(By.name("employee1")).clear();
-            await driver.findElement(By.name("nameEntry")).sendKeys("jim");
+            await driver.findElement(By.name("nameEntry")).sendKeys("Bernice");
             await driver.findElement(By.id("saveBtn")).click();
             await driver.findElement(By.name("employee3")).click();
-            await driver.wait(
-                until.elementTextContains(
-                await driver.findElement(By.name).sendKeys("employee3");
-    
-            );
-            await driver.findElement(By.name).click();
+            until.elementTextContains(
+                await driver.findElement(nameDisplay),
+                "Phillip");
+            await driver.findElement(By.name("employee1")).click();
             expect(
                 await (await driver.findElement(By.name)).getAttribute("employee1")
             ).toBe("Bernice Ortiz");
@@ -126,16 +130,16 @@ describe("Employee Manager 1.2", () => {
             3. Save the change
             4. Verify the error is present
             */
-            await driver.findElement(By.name).click();
+            await driver.findElement(By.name("employee1")).click();
             await driver.wait(
                 until.elementIsVisible(await driver.findElement(By.name,
                     ))
             );
-            await driver.findElement(By.name).clear();
+            await driver.findElement(By.name("nameEntry")).clear();
             await driver.findElement(By.name).sendKeys(Key.SPACE, Key.BACK_SPACE);
-            await driver.findElement().click();
-            await driver.wait(until.elementLocated());
-            expect(await (await driver.findElement()).getText()).toBe(
+            await driver.findElement(By.id).click();
+            await driver.wait(until.elementLocated(By.css));
+            expect(await (await driver.findElement(By.css)).getText()).toBe(
                 "The name field must be between 1 and 30 characters long."
             );
         });
