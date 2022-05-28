@@ -1,0 +1,31 @@
+{
+	"info": {
+		"_postman_id": "430f016f-3546-4c94-816a-9f8373a95557",
+		"name": "starWarsswapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21162529"
+	},
+	"item": [
+		{
+			"name": "https://swapi.devmountain.com/people/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.devmountain.com/people/13",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"devmountain",
+						"com"
+					],
+					"path": [
+						"people",
+						"13"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
